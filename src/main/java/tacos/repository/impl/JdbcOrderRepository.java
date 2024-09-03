@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class JdbcOrderRepository implements OrderRepository {
+public class JdbcOrderRepository  {
 
 
     private SimpleJdbcInsert orderSimpleJdbcInsert;
@@ -33,7 +33,7 @@ public class JdbcOrderRepository implements OrderRepository {
     }
 
 
-    @Override
+
     public Order save(Order order) {
 
         order.setPlacedAt(new Date());

@@ -1,9 +1,13 @@
 package tacos.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import java.util.ArrayList;
@@ -11,8 +15,14 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+//@RequiredArgsConstructor
+//@NoArgsConstructor(access = AccessLevel.PRIVATE,force = true)
+@Table(name = "Taco_Order")
+@Entity
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Date placedAt;
@@ -37,9 +47,17 @@ public class Order {
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
 
+    @ManyToMany(targetEntity = Taco.class)
     private List<Taco> design = new ArrayList<>();
+
 
     public void addDesign(Taco taco){
         design.add(taco);
     }
+
+    @PrePersist
+    void placedAt(){
+        this.placedAt = new Date();
+    }
+
 }
