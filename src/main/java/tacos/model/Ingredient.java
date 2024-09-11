@@ -1,22 +1,24 @@
 package tacos.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE,force = true)
+@AllArgsConstructor
+@Table(name = "Ingredient")
 @Entity
 public class Ingredient {
 
     @Id
-    private final String id;
-    private final String name;
-    private final Type type;
+    @Column(name = "id")
+    private  String id;
+    @Column(name = "name")
+    private  String name;
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private  Type type;
 
 
     public static enum Type{

@@ -9,9 +9,9 @@ import tacos.repository.IngredientRepository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Repository
+//@Repository
 public class JdbcIngredientRepository {
-
+/*
     private JdbcTemplate jdbc;
 
     @Autowired
@@ -43,4 +43,6 @@ public class JdbcIngredientRepository {
                 Ingredient.Type.valueOf(resultSet.getString("type")));
 
     }
+
+ */
 }

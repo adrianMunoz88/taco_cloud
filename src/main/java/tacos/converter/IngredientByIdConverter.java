@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import tacos.model.Ingredient;
 import tacos.repository.IngredientRepository;
 
-@Component
+//@Component
 public class IngredientByIdConverter implements Converter <String, Ingredient> {
 
     private final IngredientRepository ingredientRepository;

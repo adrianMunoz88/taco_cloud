@@ -1,40 +1,43 @@
-create table if not exists Ingredient (
-  id varchar(4) not null,
-  name varchar(25) not null,
-  type varchar(10) not null
+CREATE TABLE IF NOT EXISTS Ingredient (
+  id VARCHAR(4) PRIMARY KEY,
+  name VARCHAR(25) NOT NULL,
+  type VARCHAR(10) NOT NULL
 );
+DROP TABLE IF EXISTS  Taco;
 create table if not exists Taco (
-  id identity,
+  id identity primary key,
   name varchar(50) not null,
-  createdAt timestamp not null
-);
-create table if not exists Taco_Ingredients (
-  taco bigint not null,
-  ingredient varchar(4) not null
+  createdAt timestamp
 );
 
-alter table Ingredient add PRIMARY key (id);
-alter table Taco_Ingredients
-    add foreign key (taco) references Taco(id);
-alter table Taco_Ingredients
-    add foreign key (ingredient) references Ingredient(id);
-create table if not exists Taco_Order (
-    id identity,
-    deliveryName varchar(50) not null,
-    deliveryStreet varchar(50) not null,
-    deliveryCity varchar(50) not null,
-    deliveryState varchar(300) not null,
-    deliveryZip varchar(10) not null,
-    ccNumber varchar(16) not null,
-    ccExpiration varchar(5) not null,
-    ccCVV varchar(3) not null,
-    placedAt timestamp not null
+CREATE TABLE IF NOT EXISTS Taco_Ingredients (
+  taco BIGINT NOT NULL,
+  ingredient VARCHAR(4) NOT NULL,
+  PRIMARY KEY (taco, ingredient),
+  FOREIGN KEY (taco) REFERENCES Taco(id),
+  FOREIGN KEY (ingredient) REFERENCES Ingredient(id)
 );
-create table if not exists Taco_Order_Tacos (
-  tacoOrder bigint not null,
-  taco bigint not null
+
+DROP TABLE IF EXISTS Taco_Order;
+
+CREATE TABLE IF NOT EXISTS Taco_Order (
+    id IDENTITY PRIMARY KEY,
+    deliveryName VARCHAR(50) NOT NULL,
+    deliveryStreet VARCHAR(50) NOT NULL,
+    deliveryCity VARCHAR(50) NOT NULL,
+    deliveryState VARCHAR(300) NOT NULL,
+    deliveryZip VARCHAR(10) NOT NULL,
+    ccNumber VARCHAR(16) NOT NULL,
+    ccExpiration VARCHAR(5) NOT NULL,
+    ccCVV VARCHAR(3) NOT NULL,
+    placedAt TIMESTAMP NOT NULL
 );
-alter table Taco_Order_Tacos
-    add foreign key (tacoOrder) references Taco_Order(id);
-alter table Taco_Order_Tacos
-    add foreign key (taco) references Taco(id);
+DROP TABLE IF EXISTS Taco_Order_Tacos;
+
+CREATE TABLE IF NOT EXISTS Taco_Order_Tacos (
+    tacoOrder BIGINT NOT NULL,
+    taco BIGINT NOT NULL,
+    PRIMARY KEY (tacoOrder, taco),
+    FOREIGN KEY (tacoOrder) REFERENCES Taco_Order(id),
+    FOREIGN KEY (taco) REFERENCES Taco(id)
+);

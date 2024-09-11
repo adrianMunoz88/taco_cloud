@@ -12,9 +12,11 @@ import tacos.model.Ingredient.Type;
 import tacos.model.Order;
 import tacos.model.Taco;
 import tacos.repository.IngredientRepository;
+import tacos.repository.TacoRepository;
 import tacos.repository.impl.JdbcTacoRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -24,18 +26,19 @@ import java.util.List;
 public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
-    private final JdbcTacoRepository jdbcTacoRepository;
+    private final TacoRepository tacoRepository;
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepository, JdbcTacoRepository jdbcTacoRepository) {
+    public DesignTacoController(IngredientRepository ingredientRepository, TacoRepository tacoRepository) {
         this.ingredientRepository = ingredientRepository;
-        this.jdbcTacoRepository = jdbcTacoRepository;
+        this.tacoRepository = tacoRepository;
     }
 
     @ModelAttribute(name = "order")
     public Order order(){
         return new Order();
     }
+
 
     @ModelAttribute(name = "taco")
     public Taco taco(){
@@ -92,8 +95,12 @@ public class DesignTacoController {
         if(errors.hasErrors()){
             return "/design";
         }
-        Taco saveTaco = jdbcTacoRepository.save(taco);
-        order.addDesign(saveTaco);
+        taco.setCreatedAt(new Date());
+        log.info("Taco to be saved: {}", taco);
+
+        Taco savedTaco = tacoRepository.save(taco);
+        log.info("Saved taco: {}", savedTaco);
+        order.addDesign(savedTaco);
 //        log.info("Processing design: "+ taco);
         return "redirect:/orders/current";
     }

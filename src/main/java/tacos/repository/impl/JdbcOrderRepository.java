@@ -13,10 +13,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Repository
+//@Repository
 public class JdbcOrderRepository  {
 
-
+/*
     private SimpleJdbcInsert orderSimpleJdbcInsert;
     private SimpleJdbcInsert orderTacoSimpleJdbcInsert;
     private ObjectMapper objectMapper;
@@ -64,5 +64,5 @@ public class JdbcOrderRepository  {
 
     }
 
-
+*/
 }

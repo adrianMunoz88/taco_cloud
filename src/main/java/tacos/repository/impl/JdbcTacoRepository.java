@@ -16,9 +16,10 @@ import java.sql.Types;
 import java.util.Arrays;
 import java.util.Date;
 
-@Repository
+//@Repository
 public class JdbcTacoRepository {
 
+    /*
    private final JdbcTemplate jdbcTemplate;
 
    @Autowired
@@ -68,5 +69,5 @@ public class JdbcTacoRepository {
 
 
     }
-
+*/
 }

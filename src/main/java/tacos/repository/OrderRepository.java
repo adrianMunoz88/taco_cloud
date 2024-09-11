@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface OrderRepository extends CrudRepository<Order,Long> {
 
-    List<Order> findByDeliveryZip(String deliveryZip);
-    List<Order> readByDeliveryZipAndPlacedAtBetween(String deliveryZip, Date startDate, Date endDate);
+   // List<Order> findByDeliveryZip(String deliveryZip);
+   // List<Order> readByDeliveryZipAndPlacedAtBetween(String deliveryZip, Date startDate, Date endDate);
 }
