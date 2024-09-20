@@ -19,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class SecurityConfig  {
 
     @Bean
